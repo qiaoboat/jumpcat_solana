@@ -1,0 +1,8 @@
+{
+  "engine": "cocos2d-html5",
+  "packages": "packages",
+  "version": "2.4.5",
+  "name": "dapp",
+  "id": "dfd2725b-ead9-4ca4-9896-e04ec741751c",
+  "isNew": false
+}
