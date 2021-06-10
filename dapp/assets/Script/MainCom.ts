@@ -1,7 +1,8 @@
 const { ccclass, property } = cc._decorator;
 
-
-console.log("111", cc.resources);
+import { Time } from "./Framework/Time";
+import GameManager from "./Manager/GameManager";
+import MainUI from "./UI/MainUI";
 
 @ccclass
 export default class MainCom extends cc.Component {
@@ -12,20 +13,18 @@ export default class MainCom extends cc.Component {
     @property({ type: cc.TTFFont })
     private font: cc.TTFFont = null;
 
-    start() {
+    start(): void {
         if (this.font) {
             fgui.registerFont("myFont", this.font);
             fgui.UIConfig.defaultFont = "myFont";
         }
 
         fgui.GRoot.create();
-        fgui.UIPackage.loadPackage("UI/Main", function (err) {
-            let view: fgui.GComponent = fgui.UIPackage.createObject("Main", "Game").asCom;
-            view.makeFullScreen();
-            fgui.GRoot.inst.addChild(view);
-            // console.log(cc.view.getFrameSize());
-        });
+        GameManager.Instance.ui = new MainUI();
+        GameManager.Instance.ui.Init();
     }
 
-    // update (dt) {}
+    update(deltaTime: number): void {
+        Time.deltaTime = deltaTime;
+    }
 }
