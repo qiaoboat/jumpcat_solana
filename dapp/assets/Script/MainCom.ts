@@ -18,14 +18,12 @@ export default class MainCom extends cc.Component {
             fgui.UIConfig.defaultFont = "myFont";
         }
 
-        console.log("0", cc.resources);
         fgui.GRoot.create();
-        console.log("1");
         fgui.UIPackage.loadPackage("UI/Main", function (err) {
-            console.log("2");
             let view: fgui.GComponent = fgui.UIPackage.createObject("Main", "Game").asCom;
             view.makeFullScreen();
             fgui.GRoot.inst.addChild(view);
+            // console.log(cc.view.getFrameSize());
         });
     }
 
